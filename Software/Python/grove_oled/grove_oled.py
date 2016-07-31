@@ -55,24 +55,26 @@ if sys.platform == 'uwp':
     bus = smbus.SMBus(1)
 else:
     import smbus
-    import RPi.GPIO as GPIO
-    rev = GPIO.RPI_REVISION
+    #import RPi.GPIO as GPIO // for RPi
+    #import Adafruit_BBIO.GPIO as GPIO // For BeagleBone
+    #rev = GPIO.RPI_REVISION     // for RPi
+    rev = 2
     if rev == 2 or rev == 3:
         bus = smbus.SMBus(1)
     else:
         bus = smbus.SMBus(0)
 
-grayH= 0xF0
-grayL= 0x0F
+grayH = 0xF0
+grayL = 0x0F
 
 address = 0x3c
-Command_Mode=0x80
-Data_mode=0x40
+Command_Mode = 0x80
+Data_mode = 0x40
 
-Normal_Display_Cmd=0xA4
+Normal_Display_Cmd = 0xA4
 
 BasicFont = [[0 for x in range(8)] for x in range(10)]
-BasicFont=[[0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00],
+BasicFont = [[0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00],
 [0x00,0x00,0x5F,0x00,0x00,0x00,0x00,0x00],
 [0x00,0x00,0x07,0x00,0x07,0x00,0x00,0x00],
 [0x00,0x14,0x7F,0x14,0x7F,0x14,0x00,0x00],
@@ -173,7 +175,7 @@ def sendCommand(byte):
     try:
         block=[]
         block.append(byte)
-        return bus.write_i2c_block_data(address,Command_Mode,block)
+        return bus.write_i2c_block_data(address, Command_Mode,block)
     except IOError:
         print("IOError")
         return -1
@@ -182,7 +184,7 @@ def sendData(byte):
     try:
         block=[]
         block.append(byte)
-        return bus.write_i2c_block_data(address,Data_mode,block)
+        return bus.write_i2c_block_data(address, Data_mode,block)
     except IOError:
         print("IOError")
         return -1

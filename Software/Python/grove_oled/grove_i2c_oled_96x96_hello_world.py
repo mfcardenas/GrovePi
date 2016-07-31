@@ -45,6 +45,6 @@ grove_oled.oled_setNormalDisplay()
 grove_oled.oled_setVerticalMode()
 time.sleep(.1)
 
-for i in range(0,12):
-    grove_oled.oled_setTextXY(i,0)
-    grove_oled.oled_putString("Hello World")
+for i in range(0, 12):
+    grove_oled.oled_setTextXY(i, 0)
+    grove_oled.oled_putString(" L O L I N ")
