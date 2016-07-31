@@ -51,4 +51,4 @@ Release
 # Visual Studio files
 *.pyc
 *.pfx
-.idea/
+.idea
